@@ -53,8 +53,8 @@
                     </div>
                 </div>
                 <div class="notify-section">
-                    <p class="notify">❌ Pin Didn't Match, Please try again</p>
-                    <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+                    <p id="incorrect-pin" class="notify">❌ Pin Didn't Match, Please try again</p>
+                    <p id="correct-pin" class="notify">✅ Pin Matched... Secret door is opening for you</p>
                 </div>
             </div>
 
@@ -83,6 +83,11 @@
                     const digit = event.target.innerText
                     if(isNaN(digit)){
 
+                        if(digit === 'C'){
+                            const typedInput = document.getElementById('typed-pin');
+                        typedInput.value = '';
+                        }
+
                     }else{
                         const typedInput = document.getElementById('typed-pin');
                         typedInput.value = typedInput.value + digit;
@@ -92,10 +97,24 @@
                 function verifyPin(){
                     const pin = document.getElementById('pin').value
                     const typedPin= document.getElementById('typed-pin').value
+                    if(pin === typedPin){
+                        displayMathchResul('block','none')
+
+                    }
+                    else{
+                        displayMathchResul('none',"block")
+                    }
                     
                 }
 
 
+                function displayMathchResul(currectStatus,incurrectStatus){
+                    const correct = document.getElementById('correct-pin');
+                        correct.style.display = currectStatus;
+
+                        const incorrect = document.getElementById('incorrect-pin');
+                        incorrect.style.display = incurrectStatus;
+                }
 
             </script>
 </body>
