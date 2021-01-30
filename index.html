@@ -54,5 +54,19 @@
             <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
+
+    <script>
+        function getPin(){
+            const random = Math.random()*10000;
+            const pin =(random + '').split('.')[0];
+
+            if(pin.length === 4){
+                return pin;
+            }
+            else{
+                return getPin();
+            }
+        }
+    </script>
 </body>
 </html>
